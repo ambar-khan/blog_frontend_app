@@ -3,6 +3,9 @@
     <h1>{{ message }}</h1>
     <div v-for="post in posts">
       <p>{{ post.title }}</p>
+      <router-link v-bind:to="'/posts/' + post.id">
+        <img v-bind:src="post.image">
+      </router-link>
     </div>
   </div>
 </template>

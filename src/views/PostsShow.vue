@@ -27,8 +27,8 @@ export default {
   methods: {
     postsShow: function () {
       console.log("in posts show");
-
-      axios.get("/api/posts/1").then((response) => {
+      console.log(this.$route.params.id);
+      axios.get("/api/posts/" + this.$route.params.id).then((response) => {
         console.log(response.data);
         this.post = response.data;
       });
