@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Travels from '../views/Travels.vue';
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
+import PostsIndex from "../views/PostsIndex.vue";
 
 Vue.use(VueRouter);
 
@@ -35,7 +36,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
-  }
+  },
+  {
+    path: '/posts',
+    name: 'posts-index',
+    component: PostsIndex
+  },
 ];
 
 const router = new VueRouter({
