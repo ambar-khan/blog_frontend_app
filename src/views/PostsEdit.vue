@@ -1,7 +1,7 @@
 <template>
-  <div class="posts_new">
+  <div class="posts-edit">
     <form v-on:submit.prevent="submit()">
-      <h1>Create a New Post</h1>
+      <h1>Edit a Post</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
@@ -34,6 +34,10 @@ export default {
       errors: [],
     };
   },
+  created: function () {
+    console.log("in created...");
+    this.getPostsData();
+  },
   methods: {
     submit: function () {
       var params = {
@@ -42,15 +46,22 @@ export default {
         image: this.image,
       };
       axios
-        .post("/api/posts", params)
+        .patch("/api/posts/" + this.$route.params.id, params)
         .then((response) => {
-          this.$router.push("/posts");
+          this.$router.push("/posts/" + this.$route.params.id);
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
     },
+    getPostsData: function () {
+      axios.get("/api/posts/" + this.$route.params.id).then((response) => {
+        console.log(response.data);
+        this.title = response.data.title;
+        this.body = response.data.body;
+        this.image = response.data.image;
+      });
+    },
   },
 };
 </script>
-
