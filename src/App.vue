@@ -18,11 +18,11 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           User
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/signup">Signup</a>
-          <a class="dropdown-item" href="/login">Login</a>
-          <a class="dropdown-item" href="/logout">Logout</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li v-if="!isLoggedIn()"><a class="dropdown-item" href="/signup">Signup</a></li>
+          <li v-if="!isLoggedIn()"><a class="dropdown-item" href="/login">Login</a></li>
+          <li v-if="isLoggedIn()"><a class="dropdown-item" href="/logout">Logout</a></li>
+        </ul>
       </li>
       <li class="nav-item">
         <a class="nav-link create" href="/posts/new" tabindex="-1" aria-disabled="false">Create a Post</a>
@@ -34,9 +34,26 @@
     </form>
   </div>
 </nav>
+<div class="container">
+  <h1>Logged in? {{ isLoggedIn() }}</h1>
     <router-view/>
+</div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+};
+</script>
 
 <style>
 body {
@@ -64,3 +81,5 @@ body {
   color: #42b983;
 }
 </style>
+
+
