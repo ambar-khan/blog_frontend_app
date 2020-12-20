@@ -21,6 +21,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/signup">Signup</a>
           <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/logout">Logout</a>
         </div>
       </li>
       <li class="nav-item">
