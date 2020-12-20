@@ -4,9 +4,13 @@
     <h1>title: {{ post.title }} </h1>
     <h1>body: {{ post.body }} </h1>
     <h1>image: {{ post.image }} </h1>
-    <router-link v-bind:to="`/posts/${post.id}/edit`">Edit</router-link>
+    
+    <h1>User Id? {{ $parent.getUserId() }}</h1>
+    <h1>User Id of the Post? {{ post.user_id }}</h1>
+
+    <router-link v-if="$parent.getUserId() == post.user_id" v-bind:to="`/posts/${post.id}/edit`">Edit</router-link>
     <br>
-    <button v-on:click="postsDestroy()">Delete</button>
+    <button v-if="$parent.getUserId() == post.user_id" v-on:click="postsDestroy()">Delete</button>
   </div>
 </template>
 
